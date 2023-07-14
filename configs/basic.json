@@ -1,0 +1,27 @@
+{
+    "exp": {
+      "name": "basic_model"
+    },
+    "data_loader": {
+      "name": "basic_data_loader"
+    },
+    "model":{
+      "name": "BasicModel",
+      "learning_rate": 0.001,
+      "optimizer": "Adam"
+    },
+    "trainer":{
+      "name": "SimpleModelTrainer",
+      "num_epochs": 20,
+      "batch_size": 32,
+      "validation_split":0.25
+    },
+    "callbacks":{
+      "checkpoint_monitor": "val_loss",
+      "checkpoint_mode": "min",
+      "checkpoint_save_best_only": true,
+     "checkpoint_save_weights_only": true,
+      "checkpoint_verbose": true,
+      "tensorboard_write_graph": true
+    }
+}

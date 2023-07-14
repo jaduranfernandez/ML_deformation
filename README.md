@@ -11,9 +11,10 @@ This project aims to apply machine learning techniques to solve complex deformat
 ## Requirements
 To run this project, you need to have the following dependencies installed:
 
-- Python (version X.X.X)
+- Python (version 3.11.0 or higher)
 - Keras (version X.X.X)
 - MAYA (version X.X.X)
+- dotmap
 
 ## Installation
 1. Clone the repository:
