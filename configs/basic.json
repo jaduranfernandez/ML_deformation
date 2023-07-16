@@ -7,8 +7,9 @@
     },
     "model":{
       "name": "BasicModel",
-      "learning_rate": 0.001,
-      "optimizer": "Adam"
+      "learning_rate": 0.01,
+      "optimizer": "Adam",
+      "loss": "mse"
     },
     "trainer":{
       "name": "SimpleModelTrainer",
@@ -20,8 +21,9 @@
       "checkpoint_monitor": "val_loss",
       "checkpoint_mode": "min",
       "checkpoint_save_best_only": true,
-     "checkpoint_save_weights_only": true,
+      "checkpoint_save_weights_only": true,
       "checkpoint_verbose": true,
       "tensorboard_write_graph": true
-    }
+    },
+    "function": "custom_fun"
 }
