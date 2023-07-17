@@ -2,7 +2,7 @@ import json
 from dotmap import DotMap
 import os
 import time
-
+from utils import get_args
 
 
 
@@ -32,15 +32,19 @@ def process_config(json_file):
 
 class ConfigParser:
 
-    def __init__(self, json_file):
+    def __init__(self):
         """        
         Class to parse configuration json file. Handles hyperparameters for training, initializations of modules, checkpoint saving
         and logging module.
         :param json_file: JSON File that stores the configuration for the model.
-        """
-        self.json_file = json_file
-        self.process_config()
-
+        """        
+        try:
+            args = get_args()   # capture the config path from the run arguments
+            self.json_file = args.config
+            self.process_config()
+        except:
+            raise NameError("Missing or invalid arguments")
+            
 
     def process_config(self):
 
@@ -61,11 +65,17 @@ class ConfigParser:
         is equivalent to
         `object = module.name(a, b=1)`
         """
+        method = getattr(module, obj_name)
+        return method(*args)
+    
+    def __getitem__(self, name):
+        """Access items like ordinary dict."""
+        return self.config.name
 
-        module_name = config[name]
-        print(module_name)
-        module_args = dict(config[name]['args'])
-        assert all([k not in module_args for k in kwargs]), 'Overwriting kwargs given in config file is not allowed'
-        module_args.update(kwargs)
-        return getattr(module, module_name)(*args, **module_args)
+    def __getattr__(self, name):
+        """Access items using variable"""
+        if name in self.config:
+            return getattr(self.config, name)
+        else:
+            raise AttributeError(f"'ConfigParser' object has no attribute '{name}'")
 
