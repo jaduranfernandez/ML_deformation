@@ -3,7 +3,7 @@
       "name": "basic_model"
     },
     "data_loader": {
-      "name": "basic_data_loader"
+      "name": "CifarDataLoader"
     },
     "model":{
       "name": "BasicModel",

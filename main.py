@@ -1,7 +1,5 @@
-from utils import ConfigParser
-import utils.custom as custom_fun
-
-
+from utils import ConfigParser, create_dirs
+import data_loader as loaders
 
 
 """
@@ -18,17 +16,20 @@ import utils.custom as custom_fun
 
 def main():
     
-    
+    #   Obtain experiment's configuration
     config = ConfigParser()    
     print(config.exp.name)
 
 
+    #   Create the experiments dirs
+    create_dirs([config.callbacks.log_dir, config.callbacks.checkpoint_dir])
+
+    
+    print('Create the data generator.')
+    data_loader = config.init_obj(config.data_loader.name, loaders, config)
 
 
-
-    """ print('Create the data generator.')
-    data_loader = SimpleMnistDataLoader(config)
-
+    """ 
     print('Create the model.')
     model = SimpleMnistModel(config)
 

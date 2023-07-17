@@ -55,6 +55,7 @@ class ConfigParser:
         self.config.callbacks.log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), self.config.exp.name, "logs/")
         self.config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), self.config.exp.name, "checkpoints/")
 
+
     
     def init_obj(self, obj_name, module, *args, **kwargs):
         """
@@ -77,5 +78,5 @@ class ConfigParser:
         if name in self.config:
             return getattr(self.config, name)
         else:
-            raise AttributeError(f"'ConfigParser' object has no attribute '{name}'")
+            raise AttributeError(f"'ConfigParser' object or '{self.json_file}' file has no attribute '{name}'")
 
