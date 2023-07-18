@@ -36,10 +36,34 @@ To run this project, you need to have the following dependencies installed:
 2. Prepare a JSON configuration file with the necessary model training configurations. Example structure:
    ```json
    {
-     "neurons": 128,
-     "loss_function": "mse",
-     "accuracy_metric": "accuracy",
-     "num_layers": 3
+      "exp": {
+         "name": "basic_model"
+      },
+      "data_loader": {
+         "name": "CifarDataLoader"
+      },
+      "model":{
+         "name": "BasicModel",
+         "learning_rate": 0.01,
+         "optimizer": "adam",
+         "loss": "mse",
+         "metrics": "accuracy"
+      },
+      "trainer":{
+         "name": "SimpleCifarModelTrainer",
+         "num_epochs": 100,
+         "batch_size": 32,
+         "validation_split": 0.25,
+         "verbose_training": true
+      },
+      "callbacks":{
+         "checkpoint_monitor": "val_loss",
+         "checkpoint_mode": "min",
+         "checkpoint_save_best_only": true,
+         "checkpoint_save_weights_only": true,
+         "checkpoint_verbose": true,
+         "tensorboard_write_graph": true
+      }
    }
    ```
 3. Run the main script, providing the path to the JSON configuration file:

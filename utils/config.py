@@ -52,8 +52,8 @@ class ConfigParser:
             config_dict = json.load(config_file)
         # convert the dictionary to a namespace using bunch lib
         self.config = DotMap(config_dict)        
-        self.config.callbacks.log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), self.config.exp.name, "logs/")
-        self.config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), self.config.exp.name, "checkpoints/")
+        self.config.callbacks.log_dir = os.path.join("\\experiments", time.strftime("%Y-%m-%d\\",time.localtime()), self.config.exp.name, "logs\\")
+        self.config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\",time.localtime()), self.config.exp.name, "checkpoints\\")
 
 
     

@@ -10,10 +10,10 @@ class CifarDataLoader(BaseDataLoader):
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
         # Preprocesar los datos
-        self.X_train = x_train.astype('float32') / 255
-        self.X_test = x_test.astype('float32') / 255
-        self.Y_train = to_categorical(y_train, num_classes=10)
-        self.Y_test = to_categorical(y_test, num_classes=10)
+        self.X_train = x_train.astype('float32') / 255.0
+        self.X_test = x_test.astype('float32') / 255.0
+        self.Y_train = to_categorical(y_train)
+        self.Y_test = to_categorical(y_test)
 
     def get_train_data(self):
         return self.X_train, self.Y_train

@@ -1,5 +1,6 @@
 from utils import ConfigParser, create_dirs
 import data_loader as loaders
+import trainers
 import models
 
 
@@ -19,9 +20,9 @@ def main():
     
     #   Obtain experiment's configuration
     config = ConfigParser()    
-    print(config.exp.name)
-
-
+    print(config.model.metrics)
+    value = config.trainer.validation_split + 1
+    print(config.callbacks.log_dir)
     #   Create the experiments dirs
     create_dirs([config.callbacks.log_dir, config.callbacks.checkpoint_dir])
 
@@ -31,16 +32,15 @@ def main():
 
     print('Create the model.')
     model = config.init_obj(config.model.name, models, config)
-    model.model.summary()
-
-    """
-
+    #model.model.summary()
 
     print('Create the trainer')
-    trainer = SimpleMnistModelTrainer(model.model, data_loader.get_train_data(), config)
+    trainer = config.init_obj(config.trainer.name, trainers, model.model, data_loader.get_train_data(), config)
+
 
     print('Start training the model.')
-    trainer.train() """
+    trainer.train()
+
 
 if __name__ == '__main__':
     main()

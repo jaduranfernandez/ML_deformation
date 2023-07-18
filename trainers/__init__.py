@@ -1,0 +1,1 @@
+from trainers.simple_trainer import SimpleCifarModelTrainer

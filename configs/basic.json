@@ -8,14 +8,16 @@
     "model":{
       "name": "BasicModel",
       "learning_rate": 0.01,
-      "optimizer": "Adam",
-      "loss": "mse"
+      "optimizer": "adam",
+      "loss": "mse",
+      "metrics": "accuracy"
     },
     "trainer":{
-      "name": "SimpleModelTrainer",
-      "num_epochs": 20,
+      "name": "SimpleCifarModelTrainer",
+      "num_epochs": 2,
       "batch_size": 32,
-      "validation_split":0.25
+      "validation_split": 0.25,
+      "verbose_training": true
     },
     "callbacks":{
       "checkpoint_monitor": "val_loss",
